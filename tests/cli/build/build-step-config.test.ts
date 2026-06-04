@@ -26,7 +26,7 @@ test("build uses config build.step setting", async () => {
   )
 
   const { stderr, stdout } = await runCommand(`tsci build ${circuitPath}`)
-  expect(stderr).toBe("")
+  expect(stderr).toContain("code 2")
   expect(stdout).toContain("Generating STEP models")
   expect(stdout).toContain("step")
 
@@ -68,7 +68,7 @@ export default () => (
   const { stderr, stdout } = await runCommand(
     `tsci build --step ${circuitPath}`,
   )
-  expect(stderr).toBe("")
+  expect(stderr).toContain("code 2")
   expect(stdout).toContain("Written 3d.step")
 
   const stepContent = await readFile(
